@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:  
+    objectset.rio.cattle.io/owner-namespace: aws-poc
+  labels:
+    name: longhorn-prometheus-servicemonitor
+    objectset.rio.cattle.io/hash: def05e00b471e51a23c11638677b87b053604d21
+  name: b2b-monitor-servicemonitor
+  namespace: aws-poc
+spec:
+  endpoints:
+  - port: 80
+  namespaceSelector:
+    matchNames:
+    - aws-poc
+  selector:
+    matchLabels:
+      app: longhorn-manager

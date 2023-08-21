@@ -1,0 +1,17 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    name: b2b-monitor-client-servicemonitor
+  name: b2b-monitor-client-servicemonitor
+  namespace: aws-poc
+spec:
+  endpoints:
+  - port: metrics
+    path: /metrics
+  namespaceSelector:
+    matchNames:
+    - aws-poc
+  selector:
+    matchLabels:
+      app: b2b-monitor-client-svc

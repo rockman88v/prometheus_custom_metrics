@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: b2b-monitor-client
+  namespace: aws-poc
+spec:
+  replicas: 1  # Adjust the number of replicas as needed
+  selector:
+    matchLabels:
+      app: b2b-monitor-client
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: "false"
+      labels:
+        app: b2b-monitor-client
+    spec:
+      imagePullSecrets:
+      - name: system-image-pull
+      containers:
+        - name: b2b-monitor-client
+          image: rockman88v/b2b-monitor:realtime-v3
+          imagePullPolicy: Always
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /healthcheck
+              port: 8082
+              scheme: HTTP
+            initialDelaySeconds: 20
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1  
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /healthcheck
+              port: 8082
+              scheme: HTTP
+            initialDelaySeconds: 20
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 1200Mi
+            requests:
+              cpu: 100m
+              memory: 100Mi
+          ports:
+            - containerPort: 8082
+            - name: metrics
+              containerPort: 8082
+          env:
+            - name: DOMAIN
+              value: "http://projectnet-admin.aws-poc"
+            - name: CTN_PORT
+              value: "8082"
+            - name: EXPORTED_JOB_NAME
+              value: "PG.BDS.B2B.ProjectNetService-K8S.Client"
+            - name: INTERVAL
+              value: "5"

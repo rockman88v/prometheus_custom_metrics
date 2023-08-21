@@ -1,0 +1,274 @@
+apiVersion: management.cattle.io/v3
+builtin: false
+description: Readonly role for other team
+displayName: PG_READONLY
+kind: GlobalRole
+metadata:
+  annotations:
+    authz.management.cattle.io/cr-name: cattle-globalrole-gr-readonly
+    field.cattle.io/creatorId: user-zj62z
+    lifecycle.cattle.io/create.mgmt-auth-gr-controller: "true"  
+  finalizers:
+  - controller.cattle.io/mgmt-auth-gr-controller
+  labels:
+    cattle.io/creator: norman
+  name: gr-readonly
+rules:
+  - apiGroups:
+      - ui.cattle.io
+    resources:
+      - navlinks
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - management.cattle.io
+    resources:
+      - projectroletemplatebindings
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - project.cattle.io
+    resources:
+      - apps
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - project.cattle.io
+    resources:
+      - apprevisions
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - ''
+    resources:
+      - persistentvolumes
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - storage.k8s.io
+    resources:
+      - storageclasses
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - apiregistration.k8s.io
+    resources:
+      - apiservices
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - ''
+    resources:
+      - persistentvolumeclaims
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - metrics.k8s.io
+    resources:
+      - pods
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - management.cattle.io
+    resources:
+      - clusterevents
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - management.cattle.io
+    resources:
+      - notifiers
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - management.cattle.io
+    resources:
+      - projectalertrules
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - management.cattle.io
+    resources:
+      - projectalertgroups
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - management.cattle.io
+    resources:
+      - projectloggings
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - management.cattle.io
+    resources:
+      - clustercatalogs
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - management.cattle.io
+    resources:
+      - projectcatalogs
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - management.cattle.io
+    resources:
+      - projectmonitorgraphs
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - monitoring.coreos.com
+    resources:
+      - prometheuses
+      - prometheusrules
+      - servicemonitors
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - networking.istio.io
+    resources:
+      - destinationrules
+      - envoyfilters
+      - gateways
+      - serviceentries
+      - sidecars
+      - virtualservices
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - config.istio.io
+    resources:
+      - apikeys
+      - authorizations
+      - checknothings
+      - circonuses
+      - deniers
+      - fluentds
+      - handlers
+      - kubernetesenvs
+      - kuberneteses
+      - listcheckers
+      - listentries
+      - logentries
+      - memquotas
+      - metrics
+      - opas
+      - prometheuses
+      - quotas
+      - quotaspecbindings
+      - quotaspecs
+      - rbacs
+      - reportnothings
+      - rules
+      - solarwindses
+      - stackdrivers
+      - statsds
+      - stdios
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - authentication.istio.io
+    resources:
+      - policies
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - rbac.istio.io
+    resources:
+      - rbacconfigs
+      - serviceroles
+      - servicerolebindings
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - security.istio.io
+    resources:
+      - authorizationpolicies
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - catalog.cattle.io
+    resources:
+      - clusterrepos
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - catalog.cattle.io
+    resources:
+      - operations
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - catalog.cattle.io
+    resources:
+      - releases
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - catalog.cattle.io
+    resources:
+      - apps
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - management.cattle.io
+    resourceNames:
+      - local
+    resources:
+      - clusters
+    verbs:
+      - get

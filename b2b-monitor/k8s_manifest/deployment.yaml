@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: b2b-monitor
+spec:
+  replicas: 1  # Adjust the number of replicas as needed
+  selector:
+    matchLabels:
+      app: b2b-monitor
+  template:
+    metadata:
+      labels:
+        app: b2b-monitor
+    spec:
+      containers:
+        - name: b2b-monitor
+          image: rockman88v/b2b-monitor:latest
+          ports:
+            - containerPort: 8082
+            - name: metrics
+              containerPort: 8082
+          env:
+            - name: DOMAIN
+              value: "https://poc-projectnet.staging.propertyguru.vn"
+            - name: PORT
+              value: "8082"

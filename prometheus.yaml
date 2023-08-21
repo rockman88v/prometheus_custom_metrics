@@ -5,3 +5,9 @@ scrape_configs:
   - job_name: "coin-api"
     static_configs:
       - targets: ['coin-api:5000']
+  - job_name: "histogram-metrics"
+    static_configs:
+      - targets: ['web-histogram:8080']      
+  - job_name: "b2b-monitor-metrics"
+    static_configs:
+      - targets: ['b2b-monitor:8081']            
